@@ -125,8 +125,15 @@ export const CsvToJsonConverter = () => {
           setJsonData(data);
   
           // Store the parsed data in local storage
-          setTableData(data);
           localStorage.setItem("vouchers", JSON.stringify(data));
+
+            // Send the data via API
+          try {
+            const response = await axios.post("api/v1/createVoucher/", data);
+            console.log(response.data); // Handle the response as needed
+          } catch (error) {
+            console.log(error, "error at createVoucherData");
+          }
         },
       });
     }
