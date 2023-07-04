@@ -14,6 +14,7 @@ import { createClientData } from "../services/client.services";
 import { createTransactionData } from "../services/transaction.services";
 import { createAttandantData } from "../services/attandant.services";
 
+
 export const CsvToJsonConverter = () => {
   const [jsonData, setJsonData] = useState(null);
   const [load, setLoad] = useState(false)
@@ -114,30 +115,31 @@ export const CsvToJsonConverter = () => {
     }
   };
 
-  const handleFileDrop = async (event) => {
-    event.preventDefault();
-    const file = event.dataTransfer.files[0];
-    if (file) {
-      Papa.parse(file, {
-        header: true,
-        complete: async (results) => {
-          const { data } = results;
-          setJsonData(data);
-  
-          // Store the parsed data in local storage
-          localStorage.setItem("vouchers", JSON.stringify(data));
+const handleFileDrop = async (event) => {
+  event.preventDefault();
+  const file = event.dataTransfer.files[0];
+  if (file) {
+    Papa.parse(file, {
+      header: true,
+      complete: async (results) => {
+        const { data } = results;
+        setJsonData(data);
 
-            // Send the data via API
-          try {
-            const response = await axios.post("api/v1/createVoucher/", data);
-            console.log(response.data); // Handle the response as needed
-          } catch (error) {
-            console.log(error, "error at createVoucherData");
-          }
-        },
-      });
-    }
-  };
+        // Store the parsed data in local storage
+        setTableData(data);
+        localStorage.setItem("vouchers", JSON.stringify(data));
+
+        // Send the data via createVoucherData function
+        try {
+          const response = await createVoucherData(data);
+          console.log(response); // Handle the response as needed
+        } catch (error) {
+          console.log(error, "error at createVoucherData");
+        }
+      },
+    });
+  }
+};
   
 
   const handleDragOver = (event) => {
