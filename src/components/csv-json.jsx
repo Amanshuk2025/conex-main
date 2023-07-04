@@ -114,19 +114,23 @@ export const CsvToJsonConverter = () => {
     }
   };
 
-  const handleFileDrop = (event) => {
+  const handleFileDrop = async (event) => {
     event.preventDefault();
     const file = event.dataTransfer.files[0];
     if (file) {
       Papa.parse(file, {
         header: true,
-        complete: (results) => {
+        complete: async (results) => {
           const { data } = results;
           setJsonData(data);
+  
+          // Store the parsed data in local storage
+          localStorage.setItem("vouchers", JSON.stringify(data));
         },
       });
     }
   };
+  
 
   const handleDragOver = (event) => {
     event.preventDefault();
