@@ -125,7 +125,7 @@ export const CsvToJsonConverter = () => {
           setJsonData(data);
   
           // Store the parsed data in local storage
-          setTableData(response);
+          setTableData(data);
           localStorage.setItem("vouchers", JSON.stringify(data));
         },
       });
