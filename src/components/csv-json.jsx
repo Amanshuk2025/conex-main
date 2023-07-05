@@ -127,14 +127,7 @@ const handleFileDrop = async (event) => {
 
         // Store the parsed data in local storage
         localStorage.setItem("vouchers", JSON.stringify(data));
-
-        // Send the data via createVoucherData function
-        try {
-          const response = await createVoucherData(data);
-          console.log(response); // Handle the response as needed
-        } catch (error) {
-          console.log(error, "error at createVoucherData");
-        }
+        handleAddData(data);
       },
     });
   }
