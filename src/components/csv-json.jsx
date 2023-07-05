@@ -126,7 +126,6 @@ const handleFileDrop = async (event) => {
         setJsonData(data);
 
         // Store the parsed data in local storage
-        setTableData(data);
         localStorage.setItem("vouchers", JSON.stringify(data));
 
         // Send the data via createVoucherData function
