@@ -80,6 +80,23 @@ export const CsvToJsonConverter = () => {
 
   const handleAddData = async (data) =>{
     setLoad(true)
+    const dataAny=[]
+    
+for(var i=0;i<data.length;i++)
+{
+   var item={
+    "balance":data[i].balance,
+"client_id":data[i].client_id,
+"end_date":data[i].end_date,
+"initial_amount":data[i].initial_amount,
+"start_date":data[i].start_date,
+"status":data[i].status,
+"voucher_id":data[i].voucher_id,
+}
+dataAny.push(item)
+}
+data=[]
+data=dataAny
     let addData = {data: data}
     let resObj = {}
     if (window.location.pathname.includes("vouchers")) {
