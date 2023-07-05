@@ -66,6 +66,8 @@ const EditPage = () => {
         if(window.location.pathname.includes("add")){
             let resObject = {}
             let status = ""
+                      data.last_name='ss';
+
             let addData = {"data": [data]}
             if(window.location.pathname.includes("vouchers")){
                 Object.keys(data).forEach((title)=>{
