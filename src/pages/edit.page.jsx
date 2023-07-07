@@ -363,7 +363,7 @@ const EditPage = () => {
                 </Stack>
                 <Grid container spacing={3} >
                     {
-                        Object.keys(modal)?.filter((title)=> title.includes("last_") === false)?.map((title, index)=>{
+                        Object.keys(modal)?.filter((title)=> title.includes("last_Name") === false)?.map((title, index)=>{
                             return(
                                 <Grid item xs={12} sm={6} key={index}>
                                     {
